@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 # Create your views here.
 def get_dizimistas(request):
-    return HttpResponse("Página de Dizimistas")
+    return render(request, 'dizimistas.html')
