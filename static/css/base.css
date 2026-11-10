@@ -1,3 +1,466 @@
-h1 {
-    color: rgb(158, 4, 4);
+/* ==========================================================================
+   base.css — estilos globais do sistema de dízimo
+   Caminho: static/css/base.css
+   Paleta inspirada no manto azul-celeste de Nossa Senhora da Imaculada
+   Conceição, com um toque de dourado (a coroa de estrelas).
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap');
+
+/* ---------- Tokens ---------- */
+:root {
+    /* Cores */
+    --azul-celeste: #dcebf7;   /* fundo da barra lateral */
+    --azul-ceu: #a9cdea;       /* bordas, destaques suaves */
+    --azul-manto: #2f6ea5;     /* cor principal (botões, links) */
+    --azul-manto-escuro: #245a89;
+    --azul-noite: #17324d;     /* texto e títulos */
+    --azul-neblina: #5d7790;   /* texto secundário */
+    --lirio: #f5f9fc;          /* fundo das páginas */
+    --branco: #ffffff;
+    --dourado: #c8a45d;        /* detalhe do item ativo */
+
+    /* Estados */
+    --sucesso: #2e7d5b;
+    --sucesso-fundo: #e3f4ec;
+    --alerta: #9a6a00;
+    --alerta-fundo: #fdf3d9;
+    --erro: #b3372f;
+    --erro-fundo: #fbe7e5;
+
+    /* Tipografia */
+    --fonte-titulo: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --fonte-texto: 'Nunito Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+    /* Medidas */
+    --largura-lateral: 260px;
+    --raio: 10px;
+    --sombra: 0 1px 2px rgba(23, 50, 77, 0.06), 0 4px 14px rgba(23, 50, 77, 0.05);
+}
+
+/* ---------- Reset básico ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: var(--fonte-texto);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--azul-noite);
+    background: var(--lirio);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: var(--azul-manto);
+}
+
+a:hover {
+    color: var(--azul-manto-escuro);
+}
+
+:focus-visible {
+    outline: 3px solid var(--azul-manto);
+    outline-offset: 2px;
+}
+
+/* ---------- Tipografia ---------- */
+h1,
+h2,
+h3 {
+    font-family: var(--fonte-titulo);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--azul-noite);
+    margin: 0 0 0.5em;
+}
+
+h1 { font-size: 2.6rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.9rem; }
+h3 { font-size: 1.4rem; }
+
+p {
+    margin: 0 0 1em;
+    max-width: 70ch;
+}
+
+.texto-suave {
+    color: var(--azul-neblina);
+}
+
+/* ==========================================================================
+   Layout: barra lateral + conteúdo
+   ========================================================================== */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ---------- Barra lateral ---------- */
+.sidebar {
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    width: var(--largura-lateral);
+    height: 100vh;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem 1rem 1.25rem;
+    background: var(--azul-celeste);
+    border-right: 1px solid var(--azul-ceu);
+}
+
+.sidebar-marca {
+    padding: 0 0.75rem 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--azul-ceu);
+}
+
+.sidebar-marca-nome {
+    font-family: var(--fonte-titulo);
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--azul-noite);
+}
+
+.sidebar-marca-sub {
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+    color: var(--azul-neblina);
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-link {
+    display: block;
+    padding: 0.7rem 0.9rem 0.7rem 0.75rem;
+    border-left: 3px solid transparent;
+    border-radius: 0 var(--raio) var(--raio) 0;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--azul-noite);
+    transition: background-color 0.15s ease;
+}
+
+.sidebar-link:hover {
+    background: rgba(255, 255, 255, 0.55);
+    color: var(--azul-noite);
+}
+
+/* Página atual: fundo branco + filete dourado */
+.sidebar-link.ativo {
+    background: var(--branco);
+    border-left-color: var(--dourado);
+    color: var(--azul-manto-escuro);
+    box-shadow: var(--sombra);
+}
+
+/* Rodapé da barra lateral (logout) */
+.sidebar-rodape {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--azul-ceu);
+}
+
+.sidebar-rodape form {
+    margin: 0;
+}
+
+.btn-sair {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    font: inherit;
+    font-weight: 600;
+    text-align: left;
+    color: var(--azul-noite);
+    background: transparent;
+    border: 1px solid var(--azul-ceu);
+    border-radius: var(--raio);
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-sair:hover {
+    background: var(--erro-fundo);
+    border-color: var(--erro);
+    color: var(--erro);
+}
+
+/* ---------- Área de conteúdo ---------- */
+.conteudo {
+    flex: 1;
+    min-width: 0;
+    padding: 2.5rem clamp(1.25rem, 4vw, 3.5rem);
+}
+
+.conteudo-interno {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.cabecalho-pagina {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--azul-ceu);
+}
+
+.cabecalho-pagina h1 {
+    margin-bottom: 0.15em;
+}
+
+/* ==========================================================================
+   Componentes
+   ========================================================================== */
+
+/* ---------- Cartões ---------- */
+.cartao {
+    padding: 1.5rem;
+    background: var(--branco);
+    border: 1px solid var(--azul-celeste);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+}
+
+.grade {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* Número grande do dashboard (ex.: total arrecadado) */
+.indicador-valor {
+    font-family: var(--fonte-titulo);
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--azul-manto);
+}
+
+.indicador-rotulo {
+    margin-top: 0.4rem;
+    color: var(--azul-neblina);
+}
+
+/* ---------- Botões ---------- */
+.btn {
+    display: inline-block;
+    padding: 0.65rem 1.25rem;
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--branco);
+    background: var(--azul-manto);
+    border: 1px solid var(--azul-manto);
+    border-radius: var(--raio);
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.btn:hover {
+    background: var(--azul-manto-escuro);
+    border-color: var(--azul-manto-escuro);
+    color: var(--branco);
+}
+
+.btn-secundario {
+    color: var(--azul-manto-escuro);
+    background: var(--branco);
+    border-color: var(--azul-ceu);
+}
+
+.btn-secundario:hover {
+    background: var(--azul-celeste);
+    border-color: var(--azul-ceu);
+    color: var(--azul-noite);
+}
+
+.btn-perigo {
+    background: var(--erro);
+    border-color: var(--erro);
+}
+
+.btn-perigo:hover {
+    background: #962d26;
+    border-color: #962d26;
+}
+
+/* ---------- Formulários ---------- */
+label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+input[type='date'],
+input[type='tel'],
+select,
+textarea {
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+    font: inherit;
+    color: var(--azul-noite);
+    background: var(--branco);
+    border: 1px solid var(--azul-ceu);
+    border-radius: var(--raio);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--azul-manto);
+    box-shadow: 0 0 0 3px rgba(47, 110, 165, 0.2);
+}
+
+.campo {
+    margin-bottom: 1.1rem;
+}
+
+/* ---------- Tabelas ---------- */
+.tabela-wrapper {
+    overflow-x: auto;
+    background: var(--branco);
+    border: 1px solid var(--azul-celeste);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    white-space: nowrap;
+}
+
+th {
+    font-weight: 700;
+    color: var(--azul-noite);
+    background: var(--azul-celeste);
+}
+
+tbody tr + tr td {
+    border-top: 1px solid var(--azul-celeste);
+}
+
+tbody tr:hover {
+    background: var(--lirio);
+}
+
+/* ---------- Etiquetas de status ---------- */
+.etiqueta {
+    display: inline-block;
+    padding: 0.15rem 0.65rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 999px;
+}
+
+.etiqueta-sucesso { color: var(--sucesso); background: var(--sucesso-fundo); }
+.etiqueta-alerta  { color: var(--alerta);  background: var(--alerta-fundo); }
+.etiqueta-erro    { color: var(--erro);    background: var(--erro-fundo); }
+
+/* ---------- Mensagens do Django (messages framework) ---------- */
+.mensagens {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+}
+
+.mensagem {
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.5rem;
+    border-left: 4px solid var(--azul-manto);
+    border-radius: var(--raio);
+    background: var(--azul-celeste);
+}
+
+.mensagem.success { border-left-color: var(--sucesso); background: var(--sucesso-fundo); }
+.mensagem.warning { border-left-color: var(--alerta);  background: var(--alerta-fundo); }
+.mensagem.error   { border-left-color: var(--erro);    background: var(--erro-fundo); }
+
+/* ==========================================================================
+   Responsivo: no celular a barra lateral vira uma faixa no topo
+   ========================================================================== */
+@media (max-width: 860px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        padding: 1rem;
+        border-right: 0;
+        border-bottom: 1px solid var(--azul-ceu);
+    }
+
+    .sidebar-marca {
+        padding-bottom: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+    }
+
+    .sidebar-link {
+        padding: 0.5rem 0.9rem;
+        border-left: 0;
+        border-bottom: 3px solid transparent;
+        border-radius: var(--raio);
+    }
+
+    .sidebar-link.ativo {
+        border-bottom-color: var(--dourado);
+    }
+
+    .sidebar-rodape {
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
+    }
+
+    .btn-sair {
+        width: auto;
+    }
+
+    h1 { font-size: 2.1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
 }
