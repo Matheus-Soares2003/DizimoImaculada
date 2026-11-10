@@ -22,5 +22,5 @@ urlpatterns = [
     path('dizimistas/', include('dizimistas.urls')),
     path('ofertorio/', include('ofertorio.urls')),
     path('', include('dashboard.urls'), name='home'),
-    #path('controle_dizimo/', include('controle_dizimo.urls')),
+    path('controle_dizimo/', include('controle_dizimo.urls')),
 ]

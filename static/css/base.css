@@ -211,12 +211,12 @@ p {
 .conteudo {
     flex: 1;
     min-width: 0;
-    padding: 2.5rem clamp(1.25rem, 4vw, 3.5rem);
+    padding: 2.5rem 2.5rem;
 }
 
 .conteudo-interno {
     max-width: 1100px;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .cabecalho-pagina {

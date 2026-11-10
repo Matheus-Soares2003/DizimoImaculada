@@ -25,7 +25,7 @@
                         <a href="{% url 'dizimistas' %}" class="sidebar-link {% if request.path == '/dizimistas/' %}ativo{% endif %}">Dizimistas</a>
                     </li>
                     <li>
-                        <a href="#" class="sidebar-link {% if request.path == '/controle-dizimo/' %}ativo{% endif %}">Controle do Dízimo</a>
+                        <a href="{% url 'dizimos' %}" class="sidebar-link {% if request.path == '/controle_dizimo/' %}ativo{% endif %}">Controle do Dízimo</a>
                     </li>
                     <li>
                         <a href="{% url 'ofertorio' %}" class="sidebar-link {% if request.path == '/ofertorio/' %}ativo{% endif %}">Ofertório</a>
