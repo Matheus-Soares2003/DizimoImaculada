@@ -105,8 +105,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/' #qual url acessa os arquivos estaticos
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'templates/static'),) #define em qual url armazena os arquivos estaticos
-STATIC_ROOT = os.path.join('static') #para deploy
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),) #define em qual url armazena os arquivos estaticos
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #para deploy
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #onde armazena os uploads
 MEDIA_URL = '/media/' #onde vamos encontrar os arquivos de midia
