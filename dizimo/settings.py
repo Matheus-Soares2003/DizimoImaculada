@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dizimistas',
     'ofertorio',
+    'dashboard',
+    'controle_dizimo',
 ]
 
 MIDDLEWARE = [

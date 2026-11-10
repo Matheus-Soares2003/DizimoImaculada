@@ -16,8 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from dashboard import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('dizimistas/', include('dizimistas.urls'))
+    path('dizimistas/', include('dizimistas.urls')),
+    #path('ofertorio/', include('ofertorio.urls')),
+    path('', include('dashboard.urls'), name='home'),
+    #path('controle_dizimo/', include('controle_dizimo.urls')),
 ]

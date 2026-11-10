@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block 'title' %}Dízimo Imaculada{% endblock 'title' %}</title>
+    <title>Dízimo Imaculada</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% block 'head' %}{% endblock 'head' %}
 </head>
@@ -19,7 +19,7 @@
             <nav aria-label="Navegação principal">
                 <ul class="sidebar-nav">
                     <li>
-                        <a href="#" class="sidebar-link {% if request.path == '/dashboard/' %}ativo{% endif %}">Dashboard</a>
+                        <a href="{% url 'dash' %}" class="sidebar-link {% if request.path == '/' %}ativo{% endif %}">Dashboard</a>
                     </li>
                     <li>
                         <a href="{% url 'dizimistas' %}" class="sidebar-link {% if request.path == '/dizimistas/' %}ativo{% endif %}">Dizimistas</a>
