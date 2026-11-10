@@ -4,12 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dízimo Imaculada</title>
+    <title>{% block 'title' %}Dízimo Imaculada{% endblock 'title' %}</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% block 'head' %}{% endblock 'head' %}
 </head>
 <body>
-    
-    {% block 'body' %}{% endblock 'body' %}
+    <div class="layout">
+
+        <aside class="sidebar">
+            <div class="sidebar-marca">
+                <div class="sidebar-marca-nome">Dízimo Imaculada</div>
+            </div>
+
+            <nav aria-label="Navegação principal">
+                <ul class="sidebar-nav">
+                    <li>
+                        <a href="#" class="sidebar-link {% if request.path == '/dashboard/' %}ativo{% endif %}">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'dizimistas' %}" class="sidebar-link {% if request.path == '/dizimistas/' %}ativo{% endif %}">Dizimistas</a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-link {% if request.path == '/controle-dizimo/' %}ativo{% endif %}">Controle do Dízimo</a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-link {% if request.path == '/ofertorio/' %}ativo{% endif %}">Ofertório</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-rodape">
+                <form method="post" action="#">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-sair">Sair</button>
+                </form>
+            </div>
+        </aside>
+
+        <main class="conteudo">
+            <div class="conteudo-interno">
+                {% block 'body' %}{% endblock 'body' %}
+            </div>
+        </main>
+
+    </div>
 </body>
 </html>

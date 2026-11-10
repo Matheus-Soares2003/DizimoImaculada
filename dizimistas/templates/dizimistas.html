@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block 'head' %} 
-    <link rel="stylesheet" href="{% static 'dizimistas/css/dizimistas.css' %}"> 
-{% endblock 'head' %} 
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'dizimistas/css/dizimistas.css' %}">
+{% endblock 'head' %}
 
 {% block 'body' %}
+    <header class="cabecalho-pagina">
+        <h1>Dizimistas</h1>
+        <p class="texto-suave">Cadastro e consulta dos dizimistas da comunidade.</p>
+    </header>
 
-    <h1>Página de Dizimistas</h1>
-
+    <div class="tabela-wrapper">
+        <table>...</table>
+    </div>
 {% endblock 'body' %}
